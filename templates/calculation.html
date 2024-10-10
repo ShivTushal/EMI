@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI Calculation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light gray background */
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header text-center">
+            <h1>EMI Calculation</h1>
+        </div>
+        <form method="POST" class="card p-4">
+            <div class="mb-3">
+                <label for="Object" class="form-label">Name of the Object:</label>
+                <input type="text" id="Object" name="Object" class="form-control" placeholder="Name of the Object (optional)">
+            </div>
+            <div class="mb-3">
+                <label for="principal" class="form-label">Principal Amount (P):</label>
+                <input type="number" id="principal" name="principal" class="form-control" placeholder="Enter Principal Amount" required>
+            </div>
+            <div class="mb-3">
+                <label for="rate" class="form-label">Annual Interest Rate (R):</label>
+                <input type="number" id="rate" name="rate" class="form-control" placeholder="Enter Interest Rate" required>
+            </div>
+            <div class="mb-3">
+                <label for="tenure_years" class="form-label">Loan Tenure (N in years):</label>
+                <input type="number" id="tenure_years" name="tenure_years" class="form-control" placeholder="Enter Loan Tenure in Years" value="0">
+            </div>
+            <div class="mb-3">
+                <label for="tenure_months" class="form-label">Loan Tenure (N in months):</label>
+                <input type="number" id="tenure_months" name="tenure_months" class="form-control" placeholder="Enter Loan Tenure in Months" value="0">
+            </div>
+            <button type="submit" class="btn btn-primary">Calculate EMI</button>
+        </form>
+        
+        {% if emi is not none %}
+        <div class="alert alert-success mt-3 text-center">
+            <h2>Your EMI is: ₹{{ emi | round(2) }}</h2>
+        </div>
+        {% endif %}
+        
+        <div class="mt-3 text-center">
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Go to Main Menu</a>
+            <a href="{{ url_for('history', name=name) }}" class="btn btn-secondary">Go to Your History</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
